@@ -8,9 +8,13 @@ Currently, versions are:
 * Tomcat: `8.5.37`
 
 ## Run it
+
+The minimal command-line to run the container is:
 ```
-$ docker run -dt -p 8080:8080 chbrandt/geoserver
+$ docker run -p 8080:8080 chbrandt/geoserver
 ```
+After a couple of seconds, geoserver will be available at your browser's `http://localhost:8080`.
+
 The [credentials are the deafult ones](https://docs.geoserver.org/latest/en/user/gettingstarted/web-admin-quickstart/index.html#logging-in):
 * username: `admin`
 * password: `geoserver`
