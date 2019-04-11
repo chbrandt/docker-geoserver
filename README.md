@@ -2,7 +2,7 @@
 
 This container is deploying [GeoServer] over [Apache Tomcat], through its
 [Web Archive] package.
-The image here defined (./dockerfile/Dockerfile) inherits from [Tomcat-8 official image].
+The image [here defined](./dockerfile/Dockerfile) inherits from [Tomcat-8 official image].
 
 Currently, versions are:
 * GeoServer: `2.14.3`
