@@ -12,11 +12,11 @@ Currently, versions are:
 Container settings:
 * (from Tomcat) eposed port is `8080`
 * [Geoserver data directory][2] is:
- * `GEOSERVER_DATA_DIR='/var/lib/geoserver_data'`
+  * `GEOSERVER_DATA_DIR='/var/lib/geoserver_data'`
 * Geoserver is at Tomcat's root path (`/`)
 * [Credentials are the default ones][1]:
- * username: `admin`
- * password: `geoserver`
+  * username: `admin`
+  * password: `geoserver`
 ---
 
 [1]: https://docs.geoserver.org/latest/en/user/gettingstarted/web-admin-quickstart/index.html#logging-in
