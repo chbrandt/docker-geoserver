@@ -8,19 +8,25 @@ Currently, versions are:
 * GeoServer: `2.14.3`
 * Tomcat: `8.5.37`
 
-## How to use it
+## How to run it
 
-This container exposes port `8080`, and Geoserver is available at the root path.
 ```bash
 $ docker run -p 8080:8080 chbrandt/geoserver
 ```
 Then go to your browser' <http://localhost:8080>.
 
-[Credentials are the default ones][1]:
-* username: `admin`
-* password: `geoserver`
+---
+Container settings:
+* (from Tomcat) eposed port is `8080`
+* [Geoserver data directory][2] is: GEOSERVER_DATA_DIR=`/var/lib/geoserver_data`
+* Geoserver is at Tomcat's root path (`/`)
+* [Credentials are the default ones][1]:
+  * username: `admin`
+  * password: `geoserver`
+---
 
 [1]: https://docs.geoserver.org/latest/en/user/gettingstarted/web-admin-quickstart/index.html#logging-in
+[2]: https://docs.geoserver.org/stable/en/user/datadirectory/setting.html
 
 [geoserver]: http://geoserver.org/
 [apache tomcat]: http://tomcat.apache.org/
