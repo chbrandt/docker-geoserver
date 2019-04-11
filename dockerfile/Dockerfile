@@ -2,7 +2,9 @@ FROM tomcat:8
 
 MAINTAINER "Carlos H. Brandt <carloshenriquebrandt.gmail>"
 
-ARG GEOSERVER_VERSION='2.14.2'
+ARG GEOSERVER_VERSION='2.14.3'
+
+ENV GEOSERVER_DATA_DIR='/var/lib/geoserver_data'
 
 # Lines below will install the GeoServer WAR package inside Tomcat ('webapps/').
 # NOTICE that GeoServer will be at Tomcat's root path: "http://host:port/".
