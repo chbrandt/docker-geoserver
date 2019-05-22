@@ -14,7 +14,7 @@ ARG GEOSERVER_VERSION='2.14.3'
 # https://docs.geoserver.org/latest/en/user/datadirectory/setting.html#web-archive
 # -> we will use a simple/clean environment variable; seems to work just fine.
 # ---
-ENV GEOSERVER_DATA_DIR='/var/lib/geoserver_data'
+#ENV GEOSERVER_DATA_DIR='/var/lib/geoserver_data'
 
 # Lines below will install the GeoServer WAR package inside Tomcat ('webapps/').
 # NOTICE that GeoServer will be at Tomcat's root path: "http://host:port/".
@@ -29,11 +29,13 @@ RUN export WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip" &&\
     rm -rf ROOT*                                          &&\
     mv geoserver.war ROOT.war
 
-# Let's put some plugins there...
-# * vector tiles
-RUN mkdir -p /tmp/geoserver/vt &&  \
-    wget -O /tmp/geoserver/gs.zip \
-      https://iweb.dl.sourceforge.net/project/geoserver/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-vectortiles-plugin.zip && \
-    cd /tmp/geoserver/vt && unzip ../gs.zip && \
-    mv * ${CATALINA_HOME}/webapps/ROOT/WEB-INF/lib/. && \
-    cd - && rm -rf /tmp/geoserver
+# Adding plugins *before* Geoserver first init does not work
+## Let's put some plugins there...
+## * vector tiles
+#RUN mkdir -p /tmp/geoserver/vt &&  \
+#    wget -q -O /tmp/geoserver/gs.zip \
+#      http://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-vectortiles-plugin.zip && \
+#    cd /tmp/geoserver/vt && unzip ../gs.zip && \
+#    mkdir -p ${CATALINA_HOME}/webapps/ROOT/WEB-INF/lib && \
+#    mv * ${CATALINA_HOME}/webapps/ROOT/WEB-INF/lib/. && \
+#    cd - && rm -rf /tmp/geoserver
