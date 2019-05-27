@@ -24,18 +24,5 @@ RUN export WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip" &&\
     wget -q "http://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/${WEB_ARCHIVE_ZIP}" &&\
     unzip $WEB_ARCHIVE_ZIP -d ${CATALINA_HOME}/webapps/.  &&\
     rm $WEB_ARCHIVE_ZIP                                   &&\
-    catalina.sh stop 2> /dev/null                         &&\
-    cd ${CATALINA_HOME}/webapps                           &&\
-    rm -rf ROOT*                                          &&\
-    mv geoserver.war ROOT.war
+    catalina.sh stop 2> /dev/null
 
-# Adding plugins *before* Geoserver first init does not work
-## Let's put some plugins there...
-## * vector tiles
-#RUN mkdir -p /tmp/geoserver/vt &&  \
-#    wget -q -O /tmp/geoserver/gs.zip \
-#      http://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-vectortiles-plugin.zip && \
-#    cd /tmp/geoserver/vt && unzip ../gs.zip && \
-#    mkdir -p ${CATALINA_HOME}/webapps/ROOT/WEB-INF/lib && \
-#    mv * ${CATALINA_HOME}/webapps/ROOT/WEB-INF/lib/. && \
-#    cd - && rm -rf /tmp/geoserver
