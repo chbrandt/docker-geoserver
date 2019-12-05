@@ -1,8 +1,8 @@
-FROM tomcat:8
+FROM tomcat:8.5.49
 
 MAINTAINER "Carlos H. Brandt <carloshenriquebrandt.gmail>"
 
-ARG GEOSERVER_VERSION='2.14.3'
+ARG GEOSERVER_VERSION='2.16.1'
 
 # By default, the data store is in:
 # * GEOSERVER_DATA_DIR: ${CATALINA_HOME}/webapps/{ROOT|geoserver}/data/
@@ -14,7 +14,7 @@ ARG GEOSERVER_VERSION='2.14.3'
 # https://docs.geoserver.org/latest/en/user/datadirectory/setting.html#web-archive
 # -> we will use a simple/clean environment variable; seems to work just fine.
 # ---
-#ENV GEOSERVER_DATA_DIR='/var/lib/geoserver_data'
+ENV GEOSERVER_DATA_DIR='/var/lib/geoserver_data'
 
 # Lines below will install the GeoServer WAR package inside Tomcat ('webapps/').
 # NOTICE that GeoServer will be at Tomcat's root path: "http://host:port/".
@@ -25,4 +25,3 @@ RUN export WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip" &&\
     unzip $WEB_ARCHIVE_ZIP -d ${CATALINA_HOME}/webapps/.  &&\
     rm $WEB_ARCHIVE_ZIP                                   &&\
     catalina.sh stop 2> /dev/null
-
