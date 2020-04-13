@@ -12,3 +12,8 @@ RUN export WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip" &&\
     cd ${CATALINA_HOME}/webapps &&\
     rm -rf ROOT* &&\
     mv geoserver.war ROOT.war
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update &&\
+    apt-get install -y vim curl &&\
+    apt-get clean
