@@ -1,19 +1,31 @@
-FROM tomcat:8
+FROM tomcat:8.5
 
-MAINTAINER "Carlos H. Brandt <carloshenriquebrandt.gmail>"
+MAINTAINER "Carlos H. Brandt <carloshenriquebrandt at gmail>"
 
-ARG GEOSERVER_VERSION='2.14.2'
+ARG GEOSERVER_VERSION='2.16.2'
 
-RUN export WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip" &&\
-    wget -q "http://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/${WEB_ARCHIVE_ZIP}" &&\
-    unzip $WEB_ARCHIVE_ZIP -d ${CATALINA_HOME}/webapps/. &&\
-    rm $WEB_ARCHIVE_ZIP &&\
-    catalina.sh stop 2> /dev/null &&\
-    cd ${CATALINA_HOME}/webapps &&\
-    rm -rf ROOT* &&\
-    mv geoserver.war ROOT.war
+COPY tmp /tmp/src
 
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update &&\
-    apt-get install -y vim curl &&\
-    apt-get clean
+RUN WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip"        &&\
+    ZIP_LOCAL_PATH="/tmp/src/${WEB_ARCHIVE_ZIP}"                    &&\
+    if [ ! -f "$ZIP_LOCAL_PATH" ]; then                               \
+      GS="GeoServer/${GEOSERVER_VERSION}/${WEB_ARCHIVE_ZIP}";         \
+      wget -q "http://sourceforge.net/projects/geoserver/files/${GS}" \
+           -O ${ZIP_LOCAL_PATH};                                      \
+    fi;                                                               \
+    unzip ${ZIP_LOCAL_PATH} -d ${CATALINA_HOME}/webapps/.           &&\
+    rm $ZIP_LOCAL_PATH                                              &&\
+    catalina.sh stop 2> /dev/null
+
+RUN catalina.sh start                           &&\
+    echo 'Initializing Service' && sleep 60     &&\
+    catalina.sh stop
+
+ENV GEOSERVER_DATA="${CATALINA_HOME}/webapps/geoserver/data"
+
+COPY user_projections ${GEOSERVER_DATA}/user_projections
+
+#RUN DEBIAN_FRONTEND=noninteractive  &&\
+#    apt-get update                  &&\
+#    apt-get install -y vim curl     &&\
+#    apt-get clean
