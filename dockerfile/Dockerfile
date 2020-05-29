@@ -4,7 +4,7 @@ MAINTAINER "Carlos H. Brandt <carloshenriquebrandt at gmail>"
 
 ARG GEOSERVER_VERSION='2.16.2'
 
-COPY tmp /tmp/src
+ADD src /tmp/src
 
 RUN WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip"        &&\
     ZIP_LOCAL_PATH="/tmp/src/${WEB_ARCHIVE_ZIP}"                    &&\
