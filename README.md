@@ -4,8 +4,8 @@ This dockerfile set up [GeoServer] on top of [Apache Tomcat], using the
 [Web Archive] distribution package.
 
 The image available at [chbrandt/geoserver] provides the following versions:
-* GeoServer: `2.16.1`
-* Tomcat: `8.5.49`
+* GeoServer: `2.16.2`
+* Tomcat: `8`
 
 ## Build your image
 
