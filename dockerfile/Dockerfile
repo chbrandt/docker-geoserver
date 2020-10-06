@@ -1,4 +1,4 @@
-FROM tomcat:8.5
+FROM tomcat:8.5.49
 
 MAINTAINER "Carlos H. Brandt <carloshenriquebrandt at gmail>"
 
@@ -12,7 +12,7 @@ RUN WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip"        &&\
       GS="GeoServer/${GEOSERVER_VERSION}/${WEB_ARCHIVE_ZIP}";         \
       wget -q "http://sourceforge.net/projects/geoserver/files/${GS}" \
            -O ${ZIP_LOCAL_PATH};                                      \
-    fi;                                                               \
+    fi;                                                              \
     unzip ${ZIP_LOCAL_PATH} -d ${CATALINA_HOME}/webapps/.           &&\
     rm $ZIP_LOCAL_PATH                                              &&\
     catalina.sh stop 2> /dev/null
@@ -25,7 +25,4 @@ ENV GEOSERVER_DATA="${CATALINA_HOME}/webapps/geoserver/data"
 
 COPY user_projections ${GEOSERVER_DATA}/user_projections
 
-#RUN DEBIAN_FRONTEND=noninteractive  &&\
-#    apt-get update                  &&\
-#    apt-get install -y vim curl     &&\
-#    apt-get clean
+EXPOSE 8080
