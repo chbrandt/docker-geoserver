@@ -1,4 +1,4 @@
-FROM tomcat:8.5.49
+FROM tomcat:8
 
 MAINTAINER "Carlos H. Brandt <carloshenriquebrandt at gmail>"
 
