@@ -18,7 +18,7 @@ RUN WEB_ARCHIVE_ZIP="geoserver-${GEOSERVER_VERSION}-war.zip"        &&\
     catalina.sh stop 2> /dev/null
 
 RUN catalina.sh start                           &&\
-    echo 'Initializing Service' && sleep 60     &&\
+    echo 'Initializing Service' && sleep 20     &&\
     catalina.sh stop
 
 ENV GEOSERVER_DATA="${CATALINA_HOME}/webapps/geoserver/data"
