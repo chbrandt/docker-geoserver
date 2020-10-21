@@ -5,25 +5,6 @@ Docker container for [GeoServer] on top of [Apache Tomcat], using the
 
 For docker images already built, check DockerHub' [chbrandt/geoserver].
 
-## Run `chbrandt/geoserver`
-
-```bash
-$ docker run -p 8080:8080 -v $PWD/data:/data chbrandt/geoserver
-```
-Where `$PWD/data` with data to use/ingest to GeoServer.
-Then go to your browser' <http://localhost:8080/geoserver>.
-
-## Build your image
-
-If you want to create an image for a particular version of GeoServer you can
-give `docker build` an argument specifying the version accordingly.
-
-For example, to build an image for GeoServer `2.15.3`:
-```bash
-$ cd dockerfile/
-$ docker build --build-arg GEOSERVER_VERSION=2.15.3 -t my_geoserver .
-```
-
 ---
 Container settings:
 * Exposed port is `8080` (Tomcat's default)
@@ -33,6 +14,32 @@ Container settings:
 * [Geoserver data directory][2] is:
   * `GEOSERVER_DATA_DIR='/var/lib/geoserver_data'`
 ---
+
+## Run container
+
+Run the (`latest`) container:
+```bash
+$ docker run -p 8080:8080 chbrandt/geoserver
+```
+
+Give it a data directory to copy/publish:
+```bash
+$ docker run -v $PWD/data:/data \
+             -p 8080:8080 chbrandt/geoserver
+```
+
+Then go to your browser' <http://localhost:8080/geoserver>.
+
+
+## Build your image
+
+If you want to create an image for a particular version of GeoServer you can
+give `docker build` an argument specifying it:
+
+```bash
+$ cd dockerfile/
+$ docker build --build-arg GEOSERVER_VERSION=2.15.3 -t my_geoserver .
+```
 
 [1]: https://docs.geoserver.org/latest/en/user/gettingstarted/web-admin-quickstart/index.html#logging-in
 [2]: https://docs.geoserver.org/stable/en/user/datadirectory/setting.html
