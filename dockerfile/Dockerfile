@@ -1,8 +1,8 @@
-FROM tomcat:8.5.49
+FROM tomcat:8
 
 MAINTAINER "Carlos H. Brandt <carloshenriquebrandt at gmail>"
 
-ARG GEOSERVER_VERSION='2.16.2'
+ARG GEOSERVER_VERSION='2.17.3'
 
 ADD src /tmp/src
 
