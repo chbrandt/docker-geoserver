@@ -1,11 +1,17 @@
 # docker-geoserver
-
-This dockerfile set up [GeoServer] on top of [Apache Tomcat], using the
+[chbrandt/geoserver]: https://hub.docker.com/r/chbrandt/geoserver
+Docker container for [GeoServer] on top of [Apache Tomcat], using the
 [Web Archive] distribution package.
 
-The image available at [chbrandt/geoserver] provides the following versions:
-* GeoServer: `2.17.3`
-* Tomcat: `8`
+For docker images already built, check DockerHub' [chbrandt/geoserver].
+
+## Run `chbrandt/geoserver`
+
+```bash
+$ docker run -p 8080:8080 -v $PWD/data:/data chbrandt/geoserver
+```
+Where `$PWD/data` with data to use/ingest to GeoServer.
+Then go to your browser' <http://localhost:8080/geoserver>.
 
 ## Build your image
 
@@ -30,13 +36,6 @@ Container settings:
 
 [1]: https://docs.geoserver.org/latest/en/user/gettingstarted/web-admin-quickstart/index.html#logging-in
 [2]: https://docs.geoserver.org/stable/en/user/datadirectory/setting.html
-
-## How to run it
-
-```bash
-$ docker run -p 8080:8080 chbrandt/geoserver
-```
-Then go to your browser' <http://localhost:8080/geoserver>.
 
 ## Relocating the data directory
 
