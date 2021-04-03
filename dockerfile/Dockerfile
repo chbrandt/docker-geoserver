@@ -21,8 +21,10 @@ RUN catalina.sh start                           &&\
     echo 'Initializing Service' && sleep 20     &&\
     catalina.sh stop
 
-ENV GEOSERVER_DATA="${CATALINA_HOME}/webapps/geoserver/data"
+ENV GEOSERVER_DATA_DIR="${CATALINA_HOME}/webapps/geoserver/data"
 
-COPY user_projections ${GEOSERVER_DATA}/user_projections
+COPY catalina_home/conf/web.xml ${CATALINA_HOME}/conf/web.xml
+COPY geoserver_data_dir/security/rest.properties ${GEOSERVER_DATA_DIR}/security/rest.properties
+COPY geoserver_data_dir/user_projections/epsg.properties ${GEOSERVER_DATA_DIR}/user_projections/epsg.properties
 
 EXPOSE 8080
