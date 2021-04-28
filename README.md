@@ -1,5 +1,6 @@
 # docker-geoserver
 [chbrandt/geoserver]: https://hub.docker.com/r/chbrandt/geoserver
+
 Docker container for [GeoServer] on top of [Apache Tomcat], using the
 [Web Archive] distribution package.
 
@@ -64,5 +65,4 @@ See GeoServer' [docs on _data-directory_][datadirectory]
 [web archive]: http://geoserver.org/release/stable/
 [Tomcat-8 official image]: https://github.com/docker-library/tomcat/blob/master/8.5/jre8/Dockerfile
 [chbrandt/geoserver]: https://hub.docker.com/repository/docker/chbrandt/geoserver
-[2.16 nightly build]: https://build.geoserver.org/geoserver/2.16.x/
 [datadirectory]: https://docs.geoserver.org/latest/en/user/datadirectory/setting.html#web-archive
