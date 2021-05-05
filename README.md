@@ -39,7 +39,7 @@ give `docker build` an argument specifying it:
 
 ```bash
 $ cd dockerfile/
-$ docker build --build-arg GEOSERVER_VERSION=2.15.3 -t my_geoserver .
+$ docker build --build-arg GEOSERVER_VERSION=2.18.3 -t my_geoserver .
 ```
 
 [1]: https://docs.geoserver.org/latest/en/user/gettingstarted/web-admin-quickstart/index.html#logging-in
