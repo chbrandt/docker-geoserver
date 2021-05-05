@@ -23,8 +23,12 @@ RUN catalina.sh start                           &&\
 
 ENV GEOSERVER_DATA_DIR="${CATALINA_HOME}/webapps/geoserver/data"
 
-COPY catalina_home/conf/web.xml ${CATALINA_HOME}/conf/web.xml
-COPY geoserver_data_dir/security/rest.properties ${GEOSERVER_DATA_DIR}/security/rest.properties
-COPY geoserver_data_dir/user_projections/epsg.properties ${GEOSERVER_DATA_DIR}/user_projections/epsg.properties
+ADD catalina_home/conf/web.xml ${CATALINA_HOME}/conf/web.xml
+ADD geoserver_data_dir/security/rest.properties ${GEOSERVER_DATA_DIR}/security/rest.properties
+ADD geoserver_data_dir/user_projections/epsg.properties.planets \
+      ${GEOSERVER_DATA_DIR}/user_projections/epsg.properties.planets
+
+RUN cat ${GEOSERVER_DATA_DIR}/user_projections/epsg.properties.planets \
+      >> ${GEOSERVER_DATA_DIR}/user_projections/epsg.properties
 
 EXPOSE 8080
